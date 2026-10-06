@@ -13,29 +13,61 @@ Document at least 3 bugs you found. Add rows as needed.
 |-------|-------------------|-----------------|------------------------|
 | Difficulty Attributes | 8 guesses easy, 6 normal, 5 hard | 6 easy, 8 normal, 5 hard. "Range: 1 to 100. Attempts allowed: 8 (expected 6)" | No console error, more like a bug in game design itself. |
 
+BUG:
 attempt_limit_map = {
     "Easy": 6,
     "Normal": 8,
     "Hard": 5,
 }
+# Invalid assignment
+
+FIX:
+attempt_limit_map = {
+    "Easy": 8,
+    "Normal": 6,
+    "Hard": 5,
+}
+# Valid
+
 
 | Score Assignment | 
 Clean attribution based on number of guesses | 
 Incorrect calculations, random checks for even numbers. "You won! The secret was 6. Final score: 70 (expected 80)" | 
 Negative numbers as score, incorrect score on perfect game, no console errors though. |
 
+BUG:
 points = 100 - 10 * (attempt_number + 1)
+# Does not account for perfect game, oversubtracts
+
+FIX:
+points = 100 - 10 * (attempt_number - 1)
+# Accounts for perfect game
+
 
 | New Game Button | 
 Start a fresh new game, new score, history, status, working as intended arbitrary number of times | 
 Previous game details not reset even after button click, status permanently stuck on playing, last game history still showing. "(No example can be shown because it's all stuck on the won/lost screen.)" | 
 New Game button did not allow user to submit new guesses, stuck permanently until manual app reset. |
 
+BUG:
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
     st.success("New game started.")
     st.rerun()
+# Missing reset for state values on new_game
+
+FIX:
+if new_game:
+    # Start a fresh round for the current difficulty and clear the previous score.
+    st.session_state.attempts = 0
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
+    st.success("New game started.")
+    st.rerun()
+# Resets all necessary values before new_game
 
 ---
 

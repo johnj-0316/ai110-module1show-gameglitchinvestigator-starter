@@ -27,11 +27,6 @@ attempt_limit = attempt_limit_map[difficulty]
 
 low, high = get_range_for_difficulty(difficulty)
 
-# PROBLEM/FIXME (AI GEN): So if you win or lose, 
-# then click New Game, the app can still think the game is over 
-# because status may still be "won" or "lost". The old score also 
-# carries into the new game.
-
 # Reset the round when difficulty changes so the secret matches the selected range.
 if st.session_state.get("difficulty") != difficulty:
     st.session_state.difficulty = difficulty
@@ -74,6 +69,11 @@ with col2:
     new_game = st.button("New Game 🔁")
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
+
+# PROBLEM/FIXME (AI GEN): So if you win or lose, 
+# then click New Game, the app can still think the game is over 
+# because status may still be "won" or "lost". The old score also 
+# carries into the new game.
 
 if new_game:
     # Start a fresh round for the current difficulty and clear the previous score.
