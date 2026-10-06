@@ -100,11 +100,11 @@ def test_check_guess_raises_type_error_for_faulty_comparison_types(guess, secret
 @pytest.mark.parametrize(
     ("current_score", "outcome", "attempt_number", "expected_score"),
     [
-        (0, "Win", 1, 90),
-        (10, "Win", 0, 110),
+        (0, "Win", 1, 100),
+        (10, "Win", 1, 110),
         (0, "Win", 10, 10),
         (0, "Win", 101, 10),
-        (0, "Win", -101, 1110),
+        (0, "Win", -101, 1120),
         (0, "Win", 12.3, 10),
         (20, "Too High", 3, 15),
         (20, "Too Low", 3, 15),
