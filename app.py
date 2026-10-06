@@ -1,6 +1,7 @@
 import random
 import streamlit as st
 
+#FIXME: change ranges
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -10,7 +11,7 @@ def get_range_for_difficulty(difficulty: str):
         return 1, 50
     return 1, 100
 
-
+#FIXME: generalize int conversion without try except
 def parse_guess(raw: str):
     if raw is None:
         return False, None, "Enter a guess."
@@ -28,7 +29,7 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
+#FIXME: reverse hints and remove try except
 def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
@@ -46,7 +47,7 @@ def check_guess(guess, secret):
             return "Too High", "📈 Go HIGHER!"
         return "Too Low", "📉 Go LOWER!"
 
-
+#FIXME: update points assignment and remove too high + even check
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
@@ -76,7 +77,7 @@ difficulty = st.sidebar.selectbox(
     ["Easy", "Normal", "Hard"],
     index=1,
 )
-
+#FIXME: change limit, easy hard desc
 attempt_limit_map = {
     "Easy": 6,
     "Normal": 8,
@@ -91,7 +92,7 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
-
+#FIXME: change attemp assignment
 if "attempts" not in st.session_state:
     st.session_state.attempts = 1
 
@@ -105,7 +106,7 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 st.subheader("Make a guess")
-
+#FIXME: change range display
 st.info(
     f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
@@ -131,6 +132,7 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
+#FIXME: reset all variables
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
@@ -143,7 +145,7 @@ if st.session_state.status != "playing":
     else:
         st.error("Game over. Start a new game to try again.")
     st.stop()
-
+#FIXME: remove even check, move attempts increment to after ok check
 if submit:
     st.session_state.attempts += 1
 
