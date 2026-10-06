@@ -10,15 +10,17 @@
 
 **What task did you give the agent?**
 
-<!-- Describe the goal you asked the agent to accomplish -->
+"change the parse guess, generalize the int(float( since we only care about integer guesses"
 
 **What did the agent do?**
 
-<!-- List the steps the agent took (files edited, commands run, etc.) -->
+"I’ll tighten parse_guess so it only accepts whole-number input and stops converting decimal strings through float. That keeps the game rules cleaner."
 
 **What did you have to verify or fix manually?**
 
-<!-- Describe anything the agent got wrong or that required human review -->
+Reword the prompt and ensure that the agent understood my request. Afterwards, I manually tested the implemented code in the UI as well as wrote test cases (with the help of Codex) and checked via the terminal.
+
+"change the parse guess, generalize the int(float( since we only care about integer guesses. we dont really have to change truncating, since we can take 14.49 as a guess, just making it 14"
 
 ---
 

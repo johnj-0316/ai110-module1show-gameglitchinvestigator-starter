@@ -25,28 +25,27 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [X] Describe the game's purpose.
+- [X] Detail which bugs you found.
+- [X] Explain what fixes you applied.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Start up game by running this in computer terminal: python -m streamlit run app.py
+2. Choose a difficulty (guesses and numbers to guess range vary)
+3. Guess a number in the given amount of guesses
+4. Win if made within guesses, lose if not. Calculate score to see how well you did
+5. Quit game, start a new game, and/or change difficulty.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+python -m pytest
+58 passed in 0.05s
 ```
 
 ## 🚀 Stretch Features

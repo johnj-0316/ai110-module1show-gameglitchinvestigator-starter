@@ -1,0 +1,54 @@
+PRE-FIX
+python -m streamlit run app.py
+2026-10-05 21:05:21.409 Uvicorn server started on 0.0.0.0:8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://10.0.0.112:8501
+
+(Normal)
+15 - Go LOWER!
+12 - Go LOWER!
+11 - Go LOWER!
+10 - Go LOWER!
+9 - Go LOWER!
+8 - Go LOWER!
+7 - Go LOWER!
+6 - Out of attempts! The secret was 27. Score: 5
+
+
+New Game (not working)
+
+^C
+
+POST-FIX
+python -m pytest
+58 passed in 0.05s
+
+python -m streamlit run app.py
+2026-10-05 23:17:43.118 Uvicorn server started on 0.0.0.0:8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://10.0.0.112:8501
+
+  (Normal)
+  50 - Go LOWER!
+  25 - Go HIGHER!
+  30 - Go LOWER!
+  28 - Go LOWER!
+  27 - You won! The secret was 27. Final score: 
+
+  New Game (working)
+
+  (Normal)
+  50 - Go HIGHER!
+  75 - Go HIGHER!
+  90 - Go LOWER!
+  83 - Go LOWER!
+  80 - GO LOWER!
+  77 - Out of attempts! The secret was 78. Score: 0
+
+  ^C

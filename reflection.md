@@ -3,7 +3,7 @@
 Answer each question in 3 to 5 sentences. Be specific and honest about what actually happened while you worked. This is about your process, not trying to sound perfect.
 
 ## 1. What was broken when you started?
-The guessing system was completely broken when I started, and it looked completely confusing and inconsistent. The developer debug menu updated right after user interaction (causing a delay in what is shown vs what actually happen). Moreover, the hints display the opposite of what is correct, and the scoring system is incorrectly implemented to include negative values. 
+The guessing system was completely broken when I started, and it looked completely confusing and inconsistent. The developer debug menu updated right after user interaction (causing a delay in what is shown vs what actually happen). Moreover, the hints display the opposite of what is correct, the new game button didn't work, and the scoring system is incorrectly implemented to include negative values. 
 
 **Bug Reproduction Log**
 
@@ -11,11 +11,31 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| Difficulty Attributes | 8 guesses easy, 6 normal, 5 hard | 6 easy, 8 normal, 5 hard | No console error, more like a bug in game design itself. |
+| Difficulty Attributes | 8 guesses easy, 6 normal, 5 hard | 6 easy, 8 normal, 5 hard. "Range: 1 to 100. Attempts allowed: 8 (expected 6)" | No console error, more like a bug in game design itself. |
 
-| Score Assignment | Clean attribution based on number of guesses | Incorrect calculations, random checks for even numbers | Negative numbers as score, incorrect score on perfect guess, no console errors though. |
+attempt_limit_map = {
+    "Easy": 6,
+    "Normal": 8,
+    "Hard": 5,
+}
 
-| New Game Button | Start a fresh new game, new score, history, status | Previous game details not reset, status permanently stuck on playing, history still showing | New Game button did not allow user to submit new guesses, stuck permanently until manual app reset. |
+| Score Assignment | 
+Clean attribution based on number of guesses | 
+Incorrect calculations, random checks for even numbers. "You won! The secret was 6. Final score: 70 (expected 80)" | 
+Negative numbers as score, incorrect score on perfect game, no console errors though. |
+
+points = 100 - 10 * (attempt_number + 1)
+
+| New Game Button | 
+Start a fresh new game, new score, history, status, working as intended arbitrary number of times | 
+Previous game details not reset even after button click, status permanently stuck on playing, last game history still showing. "(No example can be shown because it's all stuck on the won/lost screen.)" | 
+New Game button did not allow user to submit new guesses, stuck permanently until manual app reset. |
+
+if new_game:
+    st.session_state.attempts = 0
+    st.session_state.secret = random.randint(1, 100)
+    st.success("New game started.")
+    st.rerun()
 
 ---
 
